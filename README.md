@@ -22,7 +22,7 @@ Install Docker Desktop, add the model file described above, and run from the rep
 docker compose up --build
 ```
 
-Open the frontend at <http://localhost:3000>. The Flask API is available at <http://localhost:5000>; MongoDB data is persisted in the `mongodb_data` volume. Stop the services with `docker compose down`.
+Open the frontend at <http://localhost:3002>. The Flask API is available at <http://localhost:5001>; MongoDB data is persisted in the `mongodb_data` volume. These host ports avoid common local development server defaults. Stop the services with `docker compose down`.
 
 ## Run locally
 
@@ -38,7 +38,7 @@ cd web_application
 python app.py
 ```
 
-The API expects MongoDB at `mongodb://localhost:27017` by default. Override `MONGODB_URI` to use another MongoDB instance. `CORS_ORIGINS` accepts a comma-separated list of allowed browser origins.
+The API expects MongoDB at `mongodb://localhost:27017` by default. Override `MONGODB_URI` to use another MongoDB instance. `CORS_ORIGINS` accepts a comma-separated list of allowed browser origins. The frontend defaults to the API at `http://127.0.0.1:5000`; set `REACT_APP_API_BASE_URL` before starting it to change that URL.
 
 ### Frontend
 
@@ -50,4 +50,4 @@ npm ci
 npm start
 ```
 
-The React development server runs at <http://localhost:3000> and connects to the API at `http://127.0.0.1:5000`.
+The React development server runs at <http://localhost:3000> and connects to the API at `http://127.0.0.1:5000` by default. If those ports are in use, set `REACT_APP_API_BASE_URL` to the API's host URL and use the alternative port printed by the React development server.

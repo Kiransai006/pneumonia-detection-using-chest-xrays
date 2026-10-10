@@ -1,4 +1,5 @@
-export const apiUrl = "http://127.0.0.1:5000/predict";
+export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:5000";
+export const apiUrl = `${apiBaseUrl}/predict`;
 
 export const models = [
   { name: "Basic CNN", accuracy: 0.84, pneumoniaRecall: 0.98, normalRecall: 0.60, size: "Small", best: false },

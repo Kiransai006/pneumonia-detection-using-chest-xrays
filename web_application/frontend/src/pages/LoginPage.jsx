@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { apiBaseUrl } from "../data/results.js";
 
-const loginUrl = "http://127.0.0.1:5000/login";
-const registerUrl = "http://127.0.0.1:5000/register";
+const loginUrl = `${apiBaseUrl}/login`;
+const registerUrl = `${apiBaseUrl}/register`;
 
 export default function LoginPage({ onLogin }) {
   const [isRegister, setIsRegister] = useState(false);
