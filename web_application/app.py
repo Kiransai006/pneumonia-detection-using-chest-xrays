@@ -1,23 +1,23 @@
-from flask import Flask, request, jsonify, render_template
-from tensorflow.keras.applications.efficientnet import preprocess_input
-from PIL import Image
+import base64
+import io
+import os
+
+import matplotlib.cm as cm
 import numpy as np
 import tensorflow as tf
-import io
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+from PIL import Image
+from tensorflow.keras.applications.efficientnet import preprocess_input
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
-import io, base64
-import matplotlib.cm as cm
-
-
-
 
 app = Flask(__name__)
 
-cor=CORS(app,origins=["http://localhost:3000"])
+cors_origins = os.environ.get("CORS_ORIGINS", "http://localhost:3000").split(",")
+CORS(app, origins=[origin.strip() for origin in cors_origins])
 
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient(os.environ.get("MONGODB_URI", "mongodb://localhost:27017"))
 db = client["pneumoniaApp"]
 usersCollection = db["users"]
 
@@ -103,4 +103,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False)

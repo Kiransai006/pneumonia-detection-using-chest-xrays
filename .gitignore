@@ -1,18 +1,22 @@
-# Python virtual environment
-web_application/.venv/
+# Python virtual environments
+.venv/
+venv/
 
 # Python cache
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # Jupyter
 .ipynb_checkpoints/
 
 # Node
-web_application/frontend/node_modules/
+node_modules/
+web_application/frontend/build/
 
 # Dataset
 chest_xray/
+web_application/chest_xray/
 
 # Trained models
 *.keras
@@ -21,6 +25,7 @@ chest_xray/
 # Environment files
 .env
 .env.*
+!.env.example
 
 # VS Code
 .vscode/
